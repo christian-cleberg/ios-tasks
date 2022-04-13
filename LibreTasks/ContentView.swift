@@ -11,6 +11,17 @@ import Combine
 struct ContentView: View {
     @ObservedObject var taskStore = TaskDataStore()
     @State var newTask : String = ""
+    @State private var query = ""
+    
+    var filteredTasks: [Task] {
+        if query.isEmpty {
+            return self.taskStore.tasks
+        } else {
+            return taskStore.tasks.filter {
+                $0.taskItem.localizedCaseInsensitiveContains(query)
+            }
+        }
+    }
     
     var addTaskBar : some View {
         HStack {
@@ -34,12 +45,16 @@ struct ContentView: View {
             VStack {
                 addTaskBar.padding()
                 List {
-                    ForEach(self.taskStore.tasks) { task in
+                    ForEach(filteredTasks) { task in
                         Text(task.taskItem)
-                    }.onDelete(perform: self.deleteTask)
-                }.navigationBarTitle("Tasks").navigationBarItems(trailing: EditButton())
+                    }
+                    .onDelete(perform: self.deleteTask)
+                }
+                .navigationBarTitle("Tasks")
+                .navigationBarItems(trailing: EditButton())
             }
         }
+        .searchable(text: $query, prompt: "Search tasks")
     }
     
     func deleteTask(at offsets: IndexSet) {
