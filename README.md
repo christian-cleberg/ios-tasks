@@ -8,10 +8,6 @@ Swift.
 
 ## Screenshots
 
-Light Mode:
-
-![Light Mode](Screenshots/preview_light.png)
-
-Dark Mode:
-
-![Dark Mode](Screenshots/preview_dark.png)
+| Light Mode                                   | Dark Mode                                  |
+|----------------------------------------------|--------------------------------------------|
+| ![Light Mode](Screenshots/preview_light.png) | ![Dark Mode](Screenshots/preview_dark.png) |
