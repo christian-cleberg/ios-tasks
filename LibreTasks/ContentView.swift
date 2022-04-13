@@ -12,6 +12,7 @@ struct ContentView: View {
     @ObservedObject var taskStore = TaskDataStore()
     @State var newTask : String = ""
     @State private var query = ""
+    @State var newTaskDate: Date = Date()
     
     var filteredTasks: [Task] {
         if query.isEmpty {
@@ -23,19 +24,25 @@ struct ContentView: View {
         }
     }
     
-    var addTaskBar : some View {
+    var addTaskBar: some View {
         HStack {
-            TextField("Add Task: ", text: self.$newTask)
+            VStack {
+                TextField("Add Task: ", text: self.$newTask)
+                DatePicker("Date: ", selection: $newTaskDate)
+                    .datePickerStyle(CompactDatePickerStyle())
+            }
             Button(action: self.addNewTask, label: {
                 Text("Add New")
             })
         }
+        .padding()
     }
     
     func addNewTask() {
         taskStore.tasks.append(Task(
             id: String(taskStore.tasks.count + 1),
-            taskItem: newTask
+            taskItem: newTask,
+            taskDate: newTaskDate
         ))
         self.newTask = ""
     }
@@ -46,12 +53,36 @@ struct ContentView: View {
                 addTaskBar.padding()
                 List {
                     ForEach(filteredTasks) { task in
-                        Text(task.taskItem)
+                        VStack(alignment: .leading) {
+                            Text(task.taskItem)
+                            Spacer()
+                            if (Date() > task.taskDate) {
+                                HStack {
+                                    Text(task.taskDate, style: .date)
+                                        .foregroundColor(.red)
+                                        .font(.caption)
+                                    Text(task.taskDate, style: .time)
+                                        .foregroundColor(.red)
+                                        .font(.caption)
+                                }
+                            } else {
+                                HStack {
+                                    Text(task.taskDate, style: .date)
+                                        .font(.caption)
+                                    Text(task.taskDate, style: .time)
+                                        .font(.caption)
+                                }
+                            }
+                        }
                     }
                     .onDelete(perform: self.deleteTask)
                 }
                 .navigationBarTitle("Tasks")
-                .navigationBarItems(trailing: EditButton())
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                }
             }
         }
         .searchable(text: $query, prompt: "Search tasks")
