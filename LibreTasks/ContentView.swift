@@ -9,7 +9,8 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    @ObservedObject var taskStore = TaskDataStore()
+    @StateObject private var taskStore = TaskDataStore()
+    // @ObservedObject var taskStore = TaskDataStore()
     @State var newTask : String = ""
     @State private var query = ""
     @State var newTaskDate: Date = Date()

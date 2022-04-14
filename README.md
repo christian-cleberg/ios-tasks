@@ -9,6 +9,7 @@ Swift.
 ## TODO
 
 - [ ] Data persistance - currently, data is cleared upon app exit
+- [ ] Functionality to edit existing tasks
 - [ ] Notification reminders for upcoming tasks
 - [ ] App icons
 - [ ] Possibly a settings page for app themes, credits/licensing, etc.
