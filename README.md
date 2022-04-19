@@ -12,7 +12,7 @@ in Swift.
 
 - [ ] Data persistance - currently, data is cleared upon app exit
 - [ ] Functionality to edit existing tasks
-- [ ] App icons
+- [x] App icons
 
 ### Backlog
 
