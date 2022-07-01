@@ -1,9 +1,10 @@
 # LibreTasks
 
-LibreTasks is currently under development and currently holds a 
-minimally-usable version of the app.
+**NOTICE:** LibreTasks (ios-tasks) is no longer under development and currently 
+holds a minimally-usable version of the app. This is the last update and will 
+not be maintained further.
 
-LibreTasks intends to be a simple open-source tasks app for iOS, written 
+LibreTasks intended to be a simple open-source tasks app for iOS, written 
 in Swift.
 
 ## TODO
