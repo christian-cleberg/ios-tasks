@@ -29,7 +29,7 @@ iOS reminders app for those who prefer open-source alternatives.
 
 If you're interested in contributing to this project, feel free to submit 
 a pull request or reach out with 
-questions ([hello@cleberg.io](mailto:hello@cleberg.io)).
+questions ([hello@cleberg.net](mailto:hello@cleberg.net)).
 
 ## Screenshots
 
